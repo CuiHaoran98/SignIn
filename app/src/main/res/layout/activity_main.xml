@@ -20,16 +20,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="用户注册"
+        android:textSize="30dp"
+        android:textColor="@color/black"
+        android:layout_marginStart="20dp"
         app:layout_constraintBottom_toTopOf="@id/name"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/icon" />
 
     <EditText
         android:id="@+id/name"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-
+        android:hint="请输入昵称"
+        android:textColorHint="#95A1AA"
+        android:selectAllOnFocus="true"
+        android:maxLines="1"
+        android:maxLength="10"
+        android:paddingTop = "5dp"
         app:layout_constraintBottom_toTopOf="@id/sex"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/choose_icon"
@@ -37,8 +44,8 @@
 
     <ImageButton
         android:id="@+id/choose_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         app:layout_constraintBottom_toTopOf="@id/sex"
         app:layout_constraintLeft_toRightOf="@id/name"
         app:layout_constraintRight_toRightOf="parent"
@@ -48,31 +55,41 @@
         android:id="@+id/sex"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="性别："
+        android:text="设置性别："
+        android:textColor="@color/black"
+        android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@id/name"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/male"
-        app:layout_constraintTop_toBottomOf="@id/login"/>
-    
-    <androidx.appcompat.widget.AppCompatRadioButton
-        android:id="@+id/male"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="男"
-        app:layout_constraintBottom_toTopOf="@id/name"
-        app:layout_constraintLeft_toRightOf="@id/sex"
-        app:layout_constraintRight_toLeftOf="@id/famale"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="20dp"
+        app:layout_constraintRight_toLeftOf="@id/rg_sex"
         app:layout_constraintTop_toBottomOf="@id/login"/>
 
-    <androidx.appcompat.widget.AppCompatRadioButton
-        android:id="@+id/famale"
+    <RadioGroup
+        android:id="@+id/rg_sex"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="女"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@id/name"
-        app:layout_constraintLeft_toRightOf="@id/male"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/login"/>
+        app:layout_constraintLeft_toRightOf="@id/sex"
+        app:layout_constraintTop_toBottomOf="@id/login">
+
+        <RadioButton
+            android:id="@+id/rb_Male"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="男"
+            android:textSize="18dp"
+            />
+
+        <RadioButton
+            android:id="@+id/rb_Female"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="女"
+            android:textSize="18dp"
+            />
+
+    </RadioGroup>
 
     <Button
         android:id="@+id/login"
