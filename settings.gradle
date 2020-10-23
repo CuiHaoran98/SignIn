@@ -1,2 +1,3 @@
+include ':appdb'
 include ':app'
 rootProject.name = "Sign In"
