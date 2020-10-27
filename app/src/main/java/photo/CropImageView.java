@@ -1,4 +1,4 @@
-package com.example.signin;
+package photo;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -16,9 +16,7 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.ViewTreeObserver;
-import androidx.appcompat.widget.AppCompatImageView;
 
-import android.widget.ImageView;
 import android.widget.Scroller;
 
 /**

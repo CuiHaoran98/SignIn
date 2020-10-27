@@ -1,4 +1,4 @@
-package com.example.signin;
+package photo;
 
 import java.io.Closeable;
 import java.io.IOException;

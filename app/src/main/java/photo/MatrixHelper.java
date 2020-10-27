@@ -1,4 +1,4 @@
-package com.example.signin;
+package photo;
 
 import android.graphics.Matrix;
 import android.graphics.RectF;
