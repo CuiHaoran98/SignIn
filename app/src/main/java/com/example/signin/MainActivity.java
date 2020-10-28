@@ -17,8 +17,6 @@ import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.text.Editable;
-import android.text.InputFilter;
-import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
@@ -52,9 +50,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final int REQUEST_CODE_TAKE_PICTURE = 2;
     private static final int REQUEST_CODE_CROP = 3;
 
-    public final String IMG_CACHE1 = Environment.getExternalStorageDirectory().getAbsolutePath() + "/img_cache1";
-    public final String IMG_CACHE2 =  Environment.getExternalStorageDirectory().getAbsolutePath() + "/img_cache2";
-    public final String PUBLIC_CACHE = Environment.getExternalStorageDirectory().getAbsolutePath() + "/temp_icon";
+    public String IMG_CACHE1 = null;
+    public String IMG_CACHE2 = null;
+    public String PUBLIC_CACHE = null;
+
+
+//    public final String IMG_CACHE1 = Environment.getExternalStorageDirectory().getAbsolutePath() + "/img_cache1";
+//    public final String IMG_CACHE2 =  Environment.getExternalStorageDirectory().getAbsolutePath() + "/img_cache2";
+//    public final String PUBLIC_CACHE = Environment.getExternalStorageDirectory().getAbsolutePath() + "/temp_icon";
 
     ImageView icon;
     Dialog mCameraDialog;
@@ -71,7 +74,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        System.out.println(IMG_CACHE1);
+        System.out.println(getApplicationContext().getFilesDir());
+
+        IMG_CACHE1 = getApplicationContext().getFilesDir() + "/img_cache1";
+        IMG_CACHE2 =  getApplicationContext().getFilesDir() + "/img_cache2";
+        PUBLIC_CACHE = getApplicationContext().getFilesDir() + "/temp_icon";
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -156,13 +163,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Button login = findViewById(R.id.login);
         login.setOnClickListener(this);
-    }
-
-    private boolean isIllegal(CharSequence s) {
-        String speChat = "[/?*&^%$#@!~\\\\]";
-        Pattern pattern = Pattern.compile(speChat);
-        Matcher matcher = pattern.matcher(s.toString());
-        return matcher.find();
     }
 
     @Override
@@ -325,55 +325,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     /**
-     * 禁止EditText输入特殊字符
-     *
-     * @param editText
-     */
-    public void setEditTextInhibitInputSpeChat(ClearEditText editText) {
-
-        InputFilter filter = new InputFilter() {
-            @Override
-            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
-//                String speChat = "[`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]";
-                String speChat = "[/?*&^%$#@!~\\\\]";
-                Pattern pattern = Pattern.compile(speChat);
-                Matcher matcher = pattern.matcher(source.toString());
-                if (matcher.find()){
-//                    Toast.makeText(MainActivity.this,
-//                            "禁止输入\"[\\\\[\\\\]/?*&^%$#@!~]\"", Toast.LENGTH_SHORT)//2 seconds
-//                            .show();
-                    tip.setText("禁止输入[\\\\[\\\\]/?*&^%$#@!~]");
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    // 隐藏软键盘
-                    imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(), 0);
-                    return "";
-                }
-                else return null;
-            }
-        };
-        editText.setFilters(new InputFilter[]{filter});
-    }
-
-    /**
-     * 禁止EditText输入空格
-     *
-     * @param editText
-     */
-    public static void setEditTextInhibitInputSpace(ClearEditText editText) {
-        InputFilter filter = new InputFilter() {
-            @Override
-            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
-                if (source.equals(" ")) {
-                    return "";
-                } else {
-                    return null;
-                }
-            }
-        };
-        editText.setFilters(new InputFilter[]{filter});
-    }
-
-    /**
      * 性别选择
      */
     class MyRadioButtonListener implements RadioGroup.OnCheckedChangeListener {
@@ -394,6 +345,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     break;
             }
         }
+    }
+
+    private boolean isIllegal(CharSequence s) {
+        String speChat = "[/?*&^%$#@!~\\\\]";
+        Pattern pattern = Pattern.compile(speChat);
+        Matcher matcher = pattern.matcher(s.toString());
+        return matcher.find();
     }
 
     /**
