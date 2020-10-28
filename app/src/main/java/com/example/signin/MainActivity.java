@@ -50,14 +50,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final int REQUEST_CODE_TAKE_PICTURE = 2;
     private static final int REQUEST_CODE_CROP = 3;
 
-    public String IMG_CACHE1 = null;
-    public String IMG_CACHE2 = null;
-    public String PUBLIC_CACHE = null;
+//    public String IMG_CACHE1 = null;
+//    public String IMG_CACHE2 = null;
+//    public String PUBLIC_CACHE = null;
 
 
-//    public final String IMG_CACHE1 = Environment.getExternalStorageDirectory().getAbsolutePath() + "/img_cache1";
-//    public final String IMG_CACHE2 =  Environment.getExternalStorageDirectory().getAbsolutePath() + "/img_cache2";
-//    public final String PUBLIC_CACHE = Environment.getExternalStorageDirectory().getAbsolutePath() + "/temp_icon";
+    public final String IMG_CACHE1 = Environment.getExternalStorageDirectory().getAbsolutePath() + "/img_cache1";
+    public final String IMG_CACHE2 =  Environment.getExternalStorageDirectory().getAbsolutePath() + "/img_cache2";
+    public final String PUBLIC_CACHE = Environment.getExternalStorageDirectory().getAbsolutePath() + "/temp_icon";
 
     ImageView icon;
     Dialog mCameraDialog;
@@ -76,9 +76,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         System.out.println(getApplicationContext().getFilesDir());
 
-        IMG_CACHE1 = getApplicationContext().getFilesDir() + "/img_cache1";
-        IMG_CACHE2 =  getApplicationContext().getFilesDir() + "/img_cache2";
-        PUBLIC_CACHE = getApplicationContext().getFilesDir() + "/temp_icon";
+//        IMG_CACHE1 = getApplicationContext().getFilesDir() + "/img_cache1";
+//        IMG_CACHE2 =  getApplicationContext().getFilesDir() + "/img_cache2";
+//        PUBLIC_CACHE = getApplicationContext().getFilesDir() + "/temp_icon";
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
